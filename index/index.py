@@ -45,21 +45,21 @@ def add_token_index(index, token, doc):
 
 
 
-def index_doc(index, doc):
+def index_doc(index, doc, tokenise):
 
-    tokens = tokenise_simple(get_title(doc))
+    tokens = tokenise(get_title(doc))
     for token in tokens:
         add_token_index(index, token, doc)
 
 
 
-def index_json(json_file):
+def index_json(json_file, tokenise):
     
     index = dict()
     data = open_json(json_file)
 
     for elt in data:
-        index_doc(index, elt)
+        index_doc(index, elt, tokenise)
     
     return index
 
