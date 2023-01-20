@@ -5,10 +5,17 @@ from bs4 import BeautifulSoup as BS
 
 def get_title(url):
 
-    url_request = request.urlopen(url)
-    soup = BS(url_request, 'html.parser')
+    title = " "
+    
+    try:
+        url_request = request.urlopen(url)
+        soup = BS(url_request, 'html.parser')
+        title = soup.title.text
 
-    return soup.title.text
+    except:
+        pass
+
+    return title
 
 
 def tokenise_simple(title):
