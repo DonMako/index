@@ -35,11 +35,33 @@ def tokenise_simple(title):
 
 
 
-def 
+def add_token_index(index, token, doc):
 
-    with open("metadata.json", "w") as f:
-        json.dump(stats, f)
+    if token in index.keys():
+        index[token].append(doc)
+    
+    else:
+        index[token] = [doc]
 
+
+
+def index_doc(index, doc):
+
+    tokens = tokenise_simple(get_title(doc))
+    for token in tokens:
+        add_token_index(index, token, doc)
+
+
+
+def index_json(json_file):
+    
+    index = dict()
+    data = open_json(json_file)
+
+    for elt in data:
+        index_doc(index, elt)
+    
+    return index
 
 
 
