@@ -1,5 +1,7 @@
 from index import get_title
 from index import tokenise
+import json
+
 
 
 def number_documents(json_file):
@@ -8,33 +10,38 @@ def number_documents(json_file):
 
 
 
-def number_token(url):
+def number_token(json_file):
 
-    return len(tokenise(get_title(url)))
+    total_token = 0
+    for doc in json_file:
+        total_token += len(tokenise(get_title(doc)))
+
+    return total_token
 
 
 
 def number_token_median(json_file):
 
-    total_token = 0
-    for doc in json_file:
-        total_token += number_token(doc)
+    documents = number_documents(json_file)
+    tokens = number_token(json_file)
     
-    return number_documents/total_token
+    return documents/tokens
 
 
 
-def most_represented_token(json_file):
+def get_statistics(json_file):
 
-    dict = {}
-    for url in json_file:
-        tokens = tokenise(get_title(url))
-        for token in tokens:
-            
-            if token not in dict:
-                dict[token] = 1
-            
-            else:
-                dict[token] += 1
-    
+    stats = {
+        "number of documents": number_documents(json_file),
+        "number of tokens": number_token(json_file),
+        "average of tokens per document": stats["number of documents"]/stats["number of tokens"]
+    }
 
+    return stats
+
+
+
+def write_statistics(stats):
+
+    with open("metadata.json", "w") as f:
+        json.dump(stats, f)
