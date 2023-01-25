@@ -37,6 +37,7 @@ def tokenise_simple(title):
 
 def add_token_index(index, token, doc):
 
+    token = token.lower()
     if token in index.keys():
         index[token].append(doc)
     

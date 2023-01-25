@@ -1,5 +1,5 @@
-from index import get_title
-from index import tokenise
+from index.index import get_title
+from index.index import tokenise_simple
 import json
 
 
@@ -14,7 +14,7 @@ def number_token(json_file):
 
     total_token = 0
     for doc in json_file:
-        total_token += len(tokenise(get_title(doc)))
+        total_token += len(tokenise_simple(get_title(doc)))
 
     return total_token
 
@@ -33,9 +33,9 @@ def get_statistics(json_file):
 
     stats = {
         "number of documents": number_documents(json_file),
-        "number of tokens": number_token(json_file),
-        "average of tokens per document": stats["number of documents"]/stats["number of tokens"]
+        "number of tokens": number_token(json_file)
     }
+    stats["average of tokens per document"] = stats["number of documents"]/stats["number of tokens"]
 
     return stats
 
