@@ -35,7 +35,7 @@ def get_statistics(json_file):
         "number of documents": number_documents(json_file),
         "number of tokens": number_token(json_file)
     }
-    stats["average of tokens per document"] = stats["number of documents"]/stats["number of tokens"]
+    stats["average of tokens per document"] = stats["number of tokens"]/stats["number of documents"]
 
     return stats
 
