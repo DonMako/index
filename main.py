@@ -9,11 +9,12 @@ from index.statistics import write_statistics
 
 def main(json_file, tokenise):
 
-    write_index(index_json(json_file, tokenise))
-    write_statistics(get_statistics(json_file))
+    index = index_json(json_file, tokenise)
+    write_index(index)
+    write_statistics(get_statistics(index))
 
 
 
 if __name__ == '__main__':
 
-    main("urls_tests.json", tokenise_simple)
+    main("crawled_urls.json", tokenise_simple)

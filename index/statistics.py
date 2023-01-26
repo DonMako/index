@@ -4,38 +4,34 @@ import json
 
 
 
-def number_documents(json_file):
+def number_documents(dict):
     
-    return len(json_file)
+    nb_doc = 0
+    doc_visited = []
+    for key in dict.keys():
+        for doc in dict[key]:
+            if doc not in doc_visited:
+                nb_doc += 1
+                doc_visited.append(doc)
+    return nb_doc
 
 
 
-def number_token(json_file):
+def number_token(dict):
 
-    total_token = 0
-    for doc in json_file:
-        total_token += len(tokenise_simple(get_title(doc)))
-
-    return total_token
+    return len(dict.keys())
 
 
 
-def number_token_median(json_file):
-
-    documents = number_documents(json_file)
-    tokens = number_token(json_file)
-    
-    return documents/tokens
-
-
-
-def get_statistics(json_file):
+def get_statistics(dict):
 
     stats = {
-        "number of documents": number_documents(json_file),
-        "number of tokens": number_token(json_file)
+        "number of documents": number_documents(dict),
+        "number of tokens": number_token(dict)
     }
-    stats["average of tokens per document"] = stats["number of tokens"]/stats["number of documents"]
+    if stats["number of documents"] != 0:
+        stats["average of tokens per document"] = stats["number of tokens"]/stats["number of documents"]
+
 
     return stats
 
