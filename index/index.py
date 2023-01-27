@@ -1,7 +1,7 @@
 from urllib import request
 from bs4 import BeautifulSoup as BS
 import json
-import nltk
+from nltk.stem import StemmerI
 
 
 
@@ -49,7 +49,8 @@ def add_token_index(index, token, doc):
 
 def add_token_stem_index(index, token, doc):
 
-    token = nltk.stem(token.lower())
+    s = StemmerI
+    token = s.stem(str(token.lower()))
     if token in index.keys():
         index[token].append(doc)
     
