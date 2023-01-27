@@ -41,3 +41,10 @@ def write_statistics(stats):
 
     with open("metadata.json", "w") as f:
         json.dump(stats, f)
+
+
+
+def write_statistics_stem(stats):
+
+    with open("metadata_stem.json", "w") as f:
+        json.dump(stats, f)
