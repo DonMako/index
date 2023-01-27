@@ -30,7 +30,7 @@ def get_statistics(dict):
         "number of tokens": number_token(dict)
     }
     if stats["number of documents"] != 0:
-        stats["average of tokens per document"] = stats["number of tokens"]/stats["number of documents"]
+        stats["average of tokens per document"] = round(stats["number of tokens"]/stats["number of documents"])
 
 
     return stats

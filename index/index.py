@@ -15,7 +15,7 @@ def open_json(json_file):
 
 def get_title(url):
 
-    title = " "
+    title = ""
     
     try:
         url_request = request.urlopen(url)
@@ -31,7 +31,7 @@ def get_title(url):
 
 def tokenise_simple(title):
 
-    return title.split(" ")
+    return title.split()
 
 
 
