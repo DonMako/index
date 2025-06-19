@@ -192,7 +192,7 @@ ubuntu-advantage-tools==27.12
 ubuntu-drivers-common==0.0.0
 ufw==0.36
 unattended-upgrades==0.1
-urllib3==1.26.19
+urllib3>=2.5.0
 usb-creator==0.3.7
 validators==0.20.0
 vboxapi==1.0
